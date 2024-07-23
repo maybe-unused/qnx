@@ -9,6 +9,7 @@ project(qnx
   LANGUAGES C CXX
 )
 set(PROJECT_NAMESPACE ${PROJECT_NAME}::)
+cmake_policy(SET CMP0100 NEW)
 
 include(CMakePrintHelpers)
 
@@ -26,6 +27,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # -- dependencies --
 find_package(floppy REQUIRED)
 find_package(magic_enum REQUIRED)
+find_package(reflect-cpp REQUIRED)
 find_package(Qt6
   COMPONENTS
     Core
@@ -61,6 +63,7 @@ target_sources(${PROJECT_NAME}
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/import.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/qgeoserviceproviderpluginqnx.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/class_config.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/class_mapping_manager_engine.cc
 )
 
@@ -76,6 +79,7 @@ target_link_libraries(${PROJECT_NAME}
     Qt::LocationPrivate
     Qt::PositioningPrivate
     magic_enum::magic_enum
+    reflect-cpp::reflect-cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>$<INSTALL_INTERFACE:include> PRIVATE src)

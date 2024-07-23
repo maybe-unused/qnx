@@ -36,6 +36,7 @@ class QNXRecipe(ConanFile):
     def requirements(self):
         self.requires("floppy/[^1.2.4]", transitive_headers=True, transitive_libs=True)
         self.requires("magic_enum/[^0.9.0]")
+        self.requires("reflect-cpp/0.11.1")
 
     def layout(self):
         cmake_layout(self)
@@ -45,7 +46,8 @@ class QNXRecipe(ConanFile):
             check_min_cppstd(self, self._min_cppstd)
 
     def configure(self):
-        pass
+        self.options["reflect-cpp"].with_json = True
+        self.options["reflect-cpp"].with_yaml = True
 
     def generate(self):
         deps = CMakeDeps(self)
@@ -72,4 +74,4 @@ class QNXRecipe(ConanFile):
         self.cpp_info.set_property("cmake_file_name", "qnx")
         self.cpp_info.set_property("cmake_target_name", "qnx::qnx")
         self.cpp_info.libs = ["qnx"]
-        self.cpp_info.requires = ["floppy::floppy", "magic_enum::magic_enum"]
+        self.cpp_info.requires = ["floppy::floppy", "magic_enum::magic_enum", "reflect-cpp::reflect-cpp"]

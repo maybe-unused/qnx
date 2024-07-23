@@ -7,6 +7,7 @@
 #include <floppy/logging.h>
 #include <qnx/formatters.h>
 #include <geoservice/parameters.hh>
+#include <geoservice/class_config.hh>
 
 namespace llog = floppy::log;
 
@@ -18,7 +19,7 @@ namespace cfg
 namespace qnx::geoservice
 {
   CGeoTiledMappingManagerEngineMap::CGeoTiledMappingManagerEngineMap(
-    QVariantMap const& parameters,
+    ::QVariantMap const& parameters,
     ::QGeoServiceProvider::Error* error,
     ::QString* error_string
   ) {
@@ -30,21 +31,19 @@ namespace qnx::geoservice
     camera_capabilities.setOverzoomEnabled(false);
     this->setCameraCapabilities(camera_capabilities);
     this->setTileSize({256, 256});
-    //  auto mapTypesFetcher = MapTypesFetcher();
-    //    auto targetConfigDirectoryKey = QString::fromStdString(ModuleParameters::parameter(ModuleParameters::ParameterType::TargetConfigDirectory));
-    //    if(parameters.contains(targetConfigDirectoryKey)) {
-    //        mapTypesFetcher.parse(parameters.value(targetConfigDirectoryKey).toString());
-    //        qInfo() << "gs_plugin config_dir:\t" << parameters.value(targetConfigDirectoryKey).toString();
-    //    }
-    //    if(mapTypesFetcher.count() == 0) {
-    //        throw std::runtime_error("Map config directory not found or no map types found in config directory");
-    //    }
-    //    QList<QGeoMapType> types;
-    //    for(int i = 0 ; i < mapTypesFetcher.count(); ++i){
-    //        types << mapTypesFetcher.mapType(i);
-    //    }
-    //    setSupportedMapTypes(types);
-    //
+    auto const target_cfg_dir = parameters::parse(parameters, parameters::target_config_directory);
+    if(not target_cfg_dir) {
+      llog::error("CGeoTiledMappingManagerEngineMap: failed to load config directory from given parameters");
+      return;
+    }
+    llog::trace("CGeoTiledMappingManagerEngineMap: config directory: {}", target_cfg_dir.value());
+    auto config = CConfig(std::filesystem::path(target_cfg_dir->toStdString()));
+    if(not config) {
+      llog::error("CGeoTiledMappingManagerEngineMap: failed to load config");
+      return;
+    }
+    this->setSupportedMapTypes(config.as_qlist());
+    //   todo
     //
     //    setTileFetcher(new GeoTileFetcherMap(mapTypesFetcher, parameters, this));
     this->setTileCache(this->generate_tile_cache(parameters));
