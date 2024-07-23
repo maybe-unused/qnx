@@ -2,6 +2,7 @@
 
 #include <floppy/logging.h>
 #include <qnx/detail/export.h>
+#include <geoservice/class_mapping_manager_engine.hh>
 
 namespace llog = floppy::log;
 
@@ -25,7 +26,7 @@ auto QGeoServiceProviderFactoryQNX::createMappingManagerEngine(
   QString* errorString
 ) const -> QGeoMappingManagerEngine* {
   llog::trace("QGeoServiceProviderFactoryQNX: creating mapping manager engine");
-  return QGeoServiceProviderFactory::createMappingManagerEngine(parameters, error, errorString);
+  return new qnx::geoservice::CGeoTiledMappingManagerEngineMap(parameters, error, errorString); // NOLINT(*-owning-memory)
 }
 
 QT_END_NAMESPACE

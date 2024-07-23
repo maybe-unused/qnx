@@ -61,6 +61,7 @@ target_sources(${PROJECT_NAME}
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/import.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/qgeoserviceproviderpluginqnx.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/class_mapping_manager_engine.cc
 )
 
 target_link_libraries(${PROJECT_NAME}
