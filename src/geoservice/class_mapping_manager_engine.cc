@@ -8,6 +8,7 @@
 #include <qnx/formatters.h>
 #include <geoservice/parameters.hh>
 #include <geoservice/class_config.hh>
+#include <geoservice/class_geotilefetchermap.hh>
 
 namespace llog = floppy::log;
 
@@ -43,9 +44,7 @@ namespace qnx::geoservice
       return;
     }
     this->setSupportedMapTypes(config.as_qlist());
-    //   todo
-    //
-    //    setTileFetcher(new GeoTileFetcherMap(mapTypesFetcher, parameters, this));
+    this->setTileFetcher(new CGeoTileFetcherMap(&config, parameters, this)); // NOLINT(*-owning-memory)
     this->setTileCache(this->generate_tile_cache(parameters));
     this->m_prefetchStyle = ::QGeoTiledMap::NoPrefetching;
     *error = ::QGeoServiceProvider::NoError;
