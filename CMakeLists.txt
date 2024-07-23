@@ -34,6 +34,7 @@ find_package(Qt6
     Quick
     Location
     Positioning
+    Network
   REQUIRED
 )
 set(CMAKE_AUTOMOC ON)
@@ -65,6 +66,7 @@ target_sources(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/qgeoserviceproviderpluginqnx.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/class_config.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/class_mapping_manager_engine.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/class_geotilefetchermap.cc
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -75,6 +77,7 @@ target_link_libraries(${PROJECT_NAME}
     Qt::Quick
     Qt::Location
     Qt::Positioning
+    Qt::Network
   PRIVATE
     Qt::LocationPrivate
     Qt::PositioningPrivate
