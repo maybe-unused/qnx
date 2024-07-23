@@ -56,9 +56,11 @@ cmake_print_properties(TARGETS ${PROJECT_NAME} PROPERTIES
 
 target_sources(${PROJECT_NAME}
   PUBLIC
-    #$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/qdebugenv/rhi/class_immediate_gui_bridge.h> $<INSTALL_INTERFACE:include/qdebugenv/rhi/class_immediate_gui_bridge.h>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/qnx/geoservice/import.h> $<INSTALL_INTERFACE:include/qnx/geoservice/import.h>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/qnx/geoservice/qgeoserviceproviderpluginqnx.h> $<INSTALL_INTERFACE:include/qnx/geoservice/qgeoserviceproviderpluginqnx.h>
   PRIVATE
-    #${CMAKE_CURRENT_SOURCE_DIR}/src/rhi/class_renderer.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/import.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/qgeoserviceproviderpluginqnx.cc
 )
 
 target_link_libraries(${PROJECT_NAME}

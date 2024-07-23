@@ -1,0 +1,10 @@
+{
+  "Keys": ["qnx"],
+  "Provider": "qnx",
+  "Version": 100,
+  "Experimental": false,
+  "Features": [
+    "OfflineMappingFeature",
+    "OnlineRoutingFeature"
+  ]
+}
