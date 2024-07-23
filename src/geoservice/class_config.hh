@@ -28,7 +28,7 @@ namespace qnx::geoservice
 
     struct ViewEntry
     {
-      u8 id{};
+      u16 id{};
       std::string name;
       std::string description;
       MapStyle style = MapStyle::GrayStreetMap;

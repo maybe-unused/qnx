@@ -30,8 +30,8 @@ namespace qnx::geoservice
     /// \return QML-represented name as <code>std::string</code>.
     [[nodiscard]] constexpr static auto parameter(parameter_t p) noexcept -> std::string {
       switch(p) {
-        case target_config_directory: return fmt::format("{}.{}", plugin_name, "targetConfigDirectory");
-        case target_cache_directory: return fmt::format("{}.{}", plugin_name, "targetCacheDirectory");
+        case target_config_directory: return fmt::format("{}.{}", plugin_name, "mapping.targetConfigDirectory");
+        case target_cache_directory: return fmt::format("{}.{}", plugin_name, "mapping.targetCacheDirectory");
         default: return "";
       }
     }

@@ -8,7 +8,6 @@
             <PerProfileState>
               <option name="myLSPEnabled" value="true" />
               <option name="myLSPCompletionEnabled" value="true" />
-              <option name="myQmlFormatEnabled" value="true" />
             </PerProfileState>
           </value>
         </entry>

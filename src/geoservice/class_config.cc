@@ -26,8 +26,9 @@ namespace qnx::geoservice
 {
   CConfig::CConfig(std::filesystem::path folder)
     : folder_{std::move(folder)}
-    , config_{::default_cfg_filename, folder, fl::saving_policy::autosave} {
+    , config_{this->folder_ / ::default_cfg_filename, fl::saving_policy::autosave} {
     try {
+      llog::trace("qnx::geoservice::CConfig: loading config from {}", this->config_.path().string());
       this->config_.load();
     } catch(std::exception const& e) {
       llog::error("qnx::geoservice::CConfig: {}", e.what());
