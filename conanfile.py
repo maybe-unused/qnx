@@ -10,12 +10,12 @@ except ImportError:
         return text
 
 
-class QDebugEnvRecipe(ConanFile):
-    name = "qdebugenv"
+class QNXRecipe(ConanFile):
+    name = "qnx"
     version = "0.1.0"
-    description = "Qt Quick (6.5+) Debug Environment - debug overlay for QML applications based on ImGUI"
-    author = "whs31 <whs31@github.io>"
-    topics = ("logging", "utility", "qt", "qml")
+    description = "Qt Native Extensions"
+    author = "whs31 <whs31@github.io>, spoo0k <mukhinva2@gmail.com>"
+    topics = ("utility", "qt", "qml", "geoservice")
 
     settings = "os", "arch", "compiler", "build_type"
     options = {
@@ -52,7 +52,7 @@ class QDebugEnvRecipe(ConanFile):
         deps.generate()
         tc = CMakeToolchain(self)
         tc.cache_variables["BUILD_SHARED_LIBS"] = self.options.shared
-        tc.cache_variables["QDE_DEV"] = self.options.dev
+        tc.cache_variables["QNX_DEV"] = self.options.dev
         tc.generate()
 
     def build(self):
@@ -69,8 +69,7 @@ class QDebugEnvRecipe(ConanFile):
         rmdir(self, os.path.join(self.package_folder, "share"))
 
     def package_info(self):
-        self.cpp_info.set_property("cmake_file_name", "qdebugenv")
-        self.cpp_info.set_property("cmake_target_name", "qdebugenv::qdebugenv")
-        self.cpp_info.libs = ["qdebugenv"]
+        self.cpp_info.set_property("cmake_file_name", "qnx")
+        self.cpp_info.set_property("cmake_target_name", "qnx::qnx")
+        self.cpp_info.libs = ["qnx"]
         self.cpp_info.requires = ["floppy::floppy", "magic_enum::magic_enum"]
-        self.cpp_info.system_libs = ["imgui"]
