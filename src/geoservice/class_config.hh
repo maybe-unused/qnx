@@ -47,7 +47,7 @@ namespace qnx::geoservice
         .description = "Default street view (Google Maps)",
         .style = MapStyle::StreetMap,
         .offline_url = "",
-        .online_url = "https://mt.google.com/vt/lyrs=r&hl=ru&z=%z&x=%x&y=%y"
+        .online_url = "https://mt.google.com/vt/lyrs=r&hl=ru&z={z}&x={x}&y={y}"
       },
       ViewEntry {
         .id = 1,
@@ -55,7 +55,7 @@ namespace qnx::geoservice
         .description = "Default satellite view (Google Maps)",
         .style = MapStyle::SatelliteMapDay,
         .offline_url = "",
-        .online_url = "https://mt.google.com/vt/lyrs=s&hl=ru&z=%z&x=%x&y=%y"
+        .online_url = "https://mt.google.com/vt/lyrs=s&hl=ru&z={z}&x={x}&y={y}"
       },
       ViewEntry {
         .id = 2,
@@ -63,7 +63,7 @@ namespace qnx::geoservice
         .description = "Default hybrid view (Google Maps)",
         .style = MapStyle::HybridMap,
         .offline_url = "",
-        .online_url = "https://mt.google.com/vt/lyrs=y&hl=ru&z=%z&x=%x&y=%y"
+        .online_url = "https://mt.google.com/vt/lyrs=y&hl=ru&z={z}&x={x}&y={y}"
       }
     };
   };

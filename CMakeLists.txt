@@ -67,6 +67,7 @@ target_sources(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/class_config.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/class_mapping_manager_engine.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/class_geotilefetchermap.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/geoservice/class_geotiledreplymap.cc
 )
 
 target_link_libraries(${PROJECT_NAME}

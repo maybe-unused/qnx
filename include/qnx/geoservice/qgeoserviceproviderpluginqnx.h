@@ -14,6 +14,8 @@ class QGeoServiceProviderFactoryQNX : public QObject,
                     FILE "qnx_plugin.json")
 
  public:
+  QGeoServiceProviderFactoryQNX() = default;
+
   auto createMappingManagerEngine(
     QVariantMap const& parameters,
     QGeoServiceProvider::Error* error,

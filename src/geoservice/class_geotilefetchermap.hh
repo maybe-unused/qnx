@@ -13,7 +13,7 @@ namespace qnx::geoservice
     Q_OBJECT
 
    public:
-    explicit CGeoTileFetcherMap(CConfig* mapTypesFetcher, ::QVariantMap const& parameters, ::QGeoMappingManagerEngine* parent = nullptr);
+    explicit CGeoTileFetcherMap(CConfig* cfg, ::QVariantMap const& parameters, ::QGeoMappingManagerEngine* parent = nullptr);
 
    private:
     auto getTileImage(::QGeoTileSpec const& spec) -> ::QGeoTiledMapReply* override;

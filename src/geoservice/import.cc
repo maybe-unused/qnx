@@ -12,6 +12,7 @@ inline auto init_plugin() -> void {
   Q_IMPORT_PLUGIN(qnx_plugin);
   #endif // defined(QNX_STATIC_LIBRARY)
 }
+
 namespace qnx // NOLINT(*-concat-nested-namespaces)
 {
   inline namespace imports
