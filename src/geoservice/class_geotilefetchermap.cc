@@ -33,7 +33,7 @@ namespace qnx::geoservice
     request.setUrl(::QUrl(this->url(spec)));
     auto* reply = this->network_manager_->get(request);
     auto* map_reply = new CGeoTiledMapReply(reply, spec, {});
-    ::QObject::connect(map_reply, &CGeoTiledMapReply::finished, this, [map_reply, this](){ this->storage_network_tile(map_reply); });
+    //::QObject::connect(map_reply, &CGeoTiledMapReply::finished, this, [map_reply, this](){ this->storage_network_tile(map_reply); });
     return map_reply;
   }
 
@@ -72,7 +72,8 @@ namespace qnx::geoservice
     auto const target_path = ::QUrl(offline_path).isLocalFile()
       ? ::QUrl(offline_path).toLocalFile()
       : offline_path;
-    if(::QFile::exists(target_path) or not ::QDir().mkpath(::QFileInfo(target_path).absolutePath()))
+    auto const path = ::QFileInfo(target_path).absolutePath();
+    if(::QFile::exists(target_path) or not ::QDir().mkpath(path))
       return;
     auto f = ::QFile(target_path);
     if(not f.open(::QIODevice::WriteOnly)) {
