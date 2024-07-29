@@ -89,14 +89,14 @@ namespace qnx::geoservice
     [[nodiscard]] auto as_qlist() const noexcept -> ::QList<::QGeoMapType>;
 
     [[nodiscard]] inline auto at(usize index) const -> ConfigData::ViewEntry const& {
-      if(index >= this->config_.values().views.size())
-        throw std::out_of_range("CConfig: index out of bounds");
+      if(index >= this->size())
+        throw std::out_of_range(fmt::format("CConfig: index out of bounds ({} >= {})", index, this->size()));
       return this->config_.values().views[index];
     }
 
     [[nodiscard]] inline auto at(usize index) -> ConfigData::ViewEntry& {
-      if(index >= this->config_.values().views.size())
-        throw std::out_of_range("CConfig: index out of bounds");
+      if(index >= this->size())
+        throw std::out_of_range(fmt::format("CConfig: index out of bounds ({} >= {})", index, this->size()));
       return this->config_.values_mut().views[index];
     }
 

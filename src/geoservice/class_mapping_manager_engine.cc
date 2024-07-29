@@ -38,13 +38,14 @@ namespace qnx::geoservice
       return;
     }
     llog::trace("CGeoTiledMappingManagerEngineMap: config directory: {}", target_cfg_dir.value());
-    auto config = CConfig(std::filesystem::path(target_cfg_dir->toStdString()));
-    if(not config) {
+    this->config_ = std::make_unique<CConfig>(std::filesystem::path(target_cfg_dir->toStdString()));
+    if(not *this->config_) {
       llog::error("CGeoTiledMappingManagerEngineMap: failed to load config");
       return;
     }
-    this->setSupportedMapTypes(config.as_qlist());
-    this->setTileFetcher(new CGeoTileFetcherMap(&config, parameters, this)); // NOLINT(*-owning-memory)
+    llog::trace("CGeoTiledMappingManagerEngineMap: found {} configurations", this->config_->size());
+    this->setSupportedMapTypes(this->config_->as_qlist());
+    this->setTileFetcher(new CGeoTileFetcherMap(this->config_.get(), parameters, this)); // NOLINT(*-owning-memory)
     this->setTileCache(this->generate_tile_cache(parameters));
     this->m_prefetchStyle = ::QGeoTiledMap::NoPrefetching;
     *error = ::QGeoServiceProvider::NoError;

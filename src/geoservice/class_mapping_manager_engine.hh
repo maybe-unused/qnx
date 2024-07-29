@@ -7,6 +7,7 @@
 
 namespace qnx::geoservice
 {
+  class CConfig;
   class CGeoTiledMappingManagerEngineMap : public ::QGeoTiledMappingManagerEngine
   {
    public:
@@ -21,5 +22,8 @@ namespace qnx::geoservice
 
    protected:
     [[nodiscard]] auto generate_tile_cache(::QVariantMap const& parameters) -> ::QGeoFileTileCache*;
+
+   private:
+    std::unique_ptr<CConfig> config_;
   };
 } // namespace qnx::geoservice
